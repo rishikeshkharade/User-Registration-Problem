@@ -21,7 +21,7 @@ public class User {
         return Pattern.matches(regex, mobile);
     }
     public static boolean isValidPassword(String password){
-        String regex = "^(?=.*[A-Z]).{8,}$";
+        String regex = "^[A-Za-z\\d@$!%*?&]{8,}$";
         return Pattern.matches(regex, password);
     }
 
@@ -56,7 +56,7 @@ public class User {
         }else {
             System.out.println("Invalid Mobile Number follow the format");
         }
-        System.out.println("Enter Password: Minimum 8 characters with at least one uppercase");
+        System.out.println("Enter Password: Minimum 8 characters with at least one uppercase and at least one numeric number");
         String password = sc.nextLine();
         if (isValidPassword(password)){
             System.out.println("Password is Valid");
