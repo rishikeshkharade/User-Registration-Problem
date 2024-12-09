@@ -16,6 +16,15 @@ public class User {
         return Pattern.matches(regex, email);
     }
 
+    public static boolean isValidMobileNumber(String mobile) {
+        String regex = "^\\d{2} \\d{10}$";
+        return Pattern.matches(regex, mobile);
+    }
+    public static boolean isValidPassword(String password){
+        String regex = "^.{8,}$";
+        return Pattern.matches(regex, password);
+    }
+
     public static void main(String[] args) throws PatternSyntaxException{
         System.out.println("Welcome to User Registration Problem");
         Scanner sc = new Scanner(System.in);
@@ -40,6 +49,20 @@ public class User {
         }else {
             System.out.println("Invalid Mail");
         }
-
+        System.out.println("Enter Mobile Number: format (91 84xxxxxx89)");
+        String mobile = sc.nextLine();
+        if (isValidMobileNumber(mobile)){
+            System.out.println("Valid Mobile Number");
+        }else {
+            System.out.println("Invalid Mobile Number follow the format");
+        }
+        System.out.println("Enter Password: Minimum 8 characters ");
+        String password = sc.nextLine();
+        if (isValidPassword(password)){
+            System.out.println("Password is Valid");
+        }else {
+            System.out.println("Invalid Password");
+        }
+        sc.close();
     }
 }
