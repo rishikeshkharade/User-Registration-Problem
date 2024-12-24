@@ -8,65 +8,109 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserRegistrationProblemTest {
     @Test
-    public void isValidFirstName_HappyCase()throws InvalidFirstNameException {
-        User.isValidFirstName("Rishikesh");
+    public void isValidFirstName_HappyCase(){
+        User.isValidFirstName.validate("Rishikesh");
     }
 
     @Test
     public void isValidFirstName_SadCase() {
-        assertThrows(InvalidFirstNameException.class, () -> User.isValidFirstName("john"));
-        assertThrows(InvalidFirstNameException.class, () -> User.isValidFirstName("jo"));
-        assertThrows(InvalidFirstNameException.class, () -> User.isValidFirstName("J"));
+        assertThrows(InvalidFirstNameException.class, () -> {
+            if (!User.isValidFirstName.validate("john")) throw new InvalidFirstNameException("Invalid first name.");
+        });
+        assertThrows(InvalidFirstNameException.class, () -> {
+            if (!User.isValidFirstName.validate("jo")) throw new InvalidFirstNameException("Invalid first name.");
+        });
+        assertThrows(InvalidFirstNameException.class, () -> {
+            if (!User.isValidFirstName.validate("J")) throw new InvalidFirstNameException("Invalid first name.");
+        });
     }
 
     @Test
-    public void isValidLastName_HappyCase() throws InvalidLastNameException{
-        User.isValidLastName("Kharade");
+    public void isValidLastName_HappyCase(){
+        User.isValidLastName.validate("Kharade");
     }
 
     @Test
     public void isValidLastName_SadCase() {
-        assertThrows(InvalidLastNameException.class, () -> User.isValidLastName("kh"));
-        assertThrows(InvalidLastNameException.class, () -> User.isValidLastName("K"));
-        assertThrows(InvalidLastNameException.class, () -> User.isValidLastName("kharade"));
+        assertThrows(InvalidLastNameException.class, () -> {
+            if (!User.isValidLastName.validate("kh")) throw new InvalidLastNameException("Invalid last name.");
+        });
+        assertThrows(InvalidLastNameException.class, () -> {
+            if (!User.isValidLastName.validate("K")) throw new InvalidLastNameException("Invalid last name.");
+        });
+        assertThrows(InvalidLastNameException.class, () -> {
+            if (!User.isValidLastName.validate("kharade")) throw new InvalidLastNameException("Invalid last name.");
+        });
     }
 
     @Test
-    public void isValidMail_HappyCase() throws InvalidMailException{
-        User.isValidMail("abc.xyz@bl.co.in");
+    public void isValidMail_HappyCase(){
+        User.isValidMail.validate("abc.xyz@bl.co.in");
     }
 
     @Test
     public void isValidMail_SadCase() {
-        assertThrows(InvalidMailException.class, () -> User.isValidMail("abc@b1"));
-        assertThrows(InvalidMailException.class, () -> User.isValidMail("abc.xyz@.com"));
-        assertThrows(InvalidMailException.class, () -> User.isValidMail("abc.xyz@bl@co.in"));
+        assertThrows(InvalidMailException.class, () -> {
+            if (!User.isValidMail.validate("abc@b1")) throw new InvalidMailException("Invalid email.");
+        });
+        assertThrows(InvalidMailException.class, () -> {
+            if (!User.isValidMail.validate("abc.xyz@.com")) throw new InvalidMailException("Invalid email.");
+        });
+        assertThrows(InvalidMailException.class, () -> {
+            if (!User.isValidMail.validate("abc.xyz@bl@co.in")) throw new InvalidMailException("Invalid eamil.");
+        });
     }
 
     @Test
-    public void isValidMobileNumber_HappyCase() throws InvalidMobileException{
-        User.isValidMobileNumber("91 8766866376");
+    public void isValidMobileNumber_HappyCase(){
+        User.isValidMobileNumber.validate("91 8766866376");
     }
 
     @Test
     public void isValidMobileNumber_SadCase() {
-        assertThrows(InvalidMobileException.class, () -> User.isValidMobileNumber("918766866376"));
-        assertThrows(InvalidMobileException.class, () -> User.isValidMobileNumber("91-8766866376"));
-        assertThrows(InvalidMobileException.class, () -> User.isValidMobileNumber("91 8766"));
+        assertThrows(InvalidMobileException.class, () -> {
+            if (!User.isValidMobileNumber.validate("918766866376")) throw new InvalidMobileException("Invalid mobile number.");
+        });
+        assertThrows(InvalidMobileException.class, () -> {
+            if (!User.isValidMobileNumber.validate("91-8766866376")) throw new InvalidMobileException("Invalid mobile number.");
+        });
+        assertThrows(InvalidMobileException.class, () -> {
+            if (!User.isValidMobileNumber.validate("91 8766")) throw new InvalidMobileException("Invalid mobile number.");
+        });
     }
 
     @Test
-    public void isValidPassword_HappyCase() throws InvalidPasswordException {
-        User.isValidPassword("Password1@");
+    public void isValidPassword_HappyCase(){
+        User.isValidPassword.validate("Password1@");
     }
 
     @Test
     public void isValidPassword_SadCase() {
-        assertThrows(InvalidPasswordException.class, () -> User.isValidPassword("dracarys@1"));
-        assertThrows(InvalidPasswordException.class, () -> User.isValidPassword("Password@"));
-        assertThrows(InvalidPasswordException.class, () -> User.isValidPassword("Password1"));
-        assertThrows(InvalidPasswordException.class, () -> User.isValidPassword("Password"));
-        assertThrows(InvalidPasswordException.class, () -> User.isValidPassword("Pass@1"));
+        assertThrows(InvalidPasswordException.class, () -> {
+            if (!User.isValidPassword.validate("darcarys@1")) {
+                throw new InvalidPasswordException("Invalid Password.");
+            }
+        });
+        assertThrows(InvalidPasswordException.class, () -> {
+            if (!User.isValidPassword.validate("Password@")) {
+                throw new InvalidPasswordException("Invalid Password.");
+            }
+        });
+        assertThrows(InvalidPasswordException.class, () -> {
+            if (!User.isValidPassword.validate("Password1")) {
+                throw new InvalidPasswordException("Invalid Password.");
+            }
+        });
+        assertThrows(InvalidPasswordException.class, () -> {
+            if (!User.isValidPassword.validate("Password")) {
+                throw new InvalidPasswordException("Invalid Password.");
+            }
+        });
+        assertThrows(InvalidPasswordException.class, () -> {
+            if (!User.isValidPassword.validate("Pass@1")) {
+                throw new InvalidPasswordException("Invalid Password.");
+            }
+        });
     }
 
     @ParameterizedTest
